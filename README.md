@@ -136,9 +136,9 @@ leetcode 题解，记录自己的 leetcode 升级过程， 目前包含了前100
 |100|[相同的树](https://leetcode-cn.com/problems/same-tree)|简单|
 
 ## 微信
-
-![wechat-group-chat](./assets/wechat_1.jpeg){:height="200px" width="200px"}
-![wechat-group-chat](./assets/wechat_2.jpeg){:height="200px" width="200px"}
+ 
+![wechat-group-chat](./assets/wechat_1.jpeg)
+![wechat-group-chat](./assets/wechat_2.jpeg)
 
 ## 贡献
 
