@@ -8,21 +8,23 @@ import "math"
 
 // 质数法 受评论启发
 func subsets(nums []int) [][]int {
-	total := math.Pow(2, len(nums))
-	res := make([][]int, total)
-	n := 0
-	for n < total {
-		sub := make([]int, 0)
+	res := [][]int{}
+	n := math.Pow(2, float64(len(nums)))
+	nint := int(n)
+	for i := 0; i < nint; i++ {
+		sub := []int{}
 		cnt := 1
-		for cnt < len(nums) {
-			if cnt&n > 0 {
-				sub = append(sub, nums[cnt])
+		for j := 0; j < len(nums); j++ {
+			if j == 0 {
+				cnt = 1
+			} else {
+				cnt = cnt << 1
 			}
-			cnt = cnt << 1
-			cnt++
+			if i&cnt > 0 {
+				sub = append(sub, nums[j])
+			}
 		}
-		n++
-		res[n] = sub
+		res = append(res, sub)
 	}
 	return res
 }
