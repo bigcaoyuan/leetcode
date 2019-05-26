@@ -1,4 +1,4 @@
-import "math"
+import "sort"
 
 /*
  * @lc app=leetcode.cn id=90 lang=golang
@@ -6,24 +6,28 @@ import "math"
  * [90] 子集 II
  */
 func subsetsWithDup(nums []int) [][]int {
-	res := [][]int{}
-	n := math.Pow(2, float64(len(nums)))
-	nint := int(n)
-	for i := 0; i < nint; i++ {
-		sub := []int{}
-		cnt := 1
-		for j := 0; j < len(nums); j++ {
-			if j == 0 {
-				cnt = 1
-			} else {
-				cnt = cnt << 1
-			}
-			if i&cnt >= 1 {
-				sub = append(sub, nums[j])
-			}
+	if len(nums) == 1 {
+		return [][]int{nums, []int{}}
+	}
+	if len(nums) == 0 {
+		return [][]int{nums}
+	}
+	sort.Ints(nums)
+	res := [][]int{[]int{}, []int{nums[0]}}
+	lens := []int{1, 2}
+	for i := 1; i < len(nums); i++ {
+		left := 0
+		if nums[i] == nums[i-1] {
+			left = lens[i-1]
 		}
-		res = append(res, sub)
+		cnt := len(res)
+		for j := left; j < cnt; j++ {
+			temp := make([]int, len(res[j])+1)
+			copy(temp, res[j])
+			temp[len(temp)-1] = nums[i]
+			res = append(res, temp)
+		}
+		lens = append(lens, len(res))
 	}
 	return res
 }
-
