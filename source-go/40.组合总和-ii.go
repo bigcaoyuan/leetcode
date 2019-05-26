@@ -6,9 +6,6 @@ import "sort"
  * [40] 组合总和 II
  */
 func combinationSum2(candidates []int, target int) [][]int {
-	if target == 0 {
-		return [][]int{}
-	}
 	sort.Ints(candidates)
 	res := make([][]int, 0)
 	temp := []int{}
@@ -26,11 +23,15 @@ func com(candidates []int, target, index int, temp []int, sum int, res *[][]int)
 	if sum > target {
 		return
 	}
-
+	last := -1
 	for i := index; i < len(candidates); i++ {
+		if candidates[i] == last {
+			continue
+		}
+		last = candidates[i]
 		temp1 := append(temp, candidates[i])
 		sum1 := sum + candidates[i]
-		com(candidates, target, i, temp1, sum1, res)
+		com(candidates, target, i+1, temp1, sum1, res)
 	}
 }
 
