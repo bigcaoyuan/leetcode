@@ -53,7 +53,7 @@ func divide(dividend int, divisor int) int {
 			res += 1 << i
 			dividend -= divisor << i
 		}
-		if i == 0 {
+		if dividend == 0 {
 			break
 		}
 	}
